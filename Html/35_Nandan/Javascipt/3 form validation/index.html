@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>Forms</title>
+		<link rel="stylesheet" href="style.css"></link>
+	</head>
+	<body>
+	<center><h2>REGISTRATION FORM</h2></center>
+		<form method=""  onsubmit="return validate()">
+		<fieldset><legend>USER INFORMATION </legend>
+			<label>Username :</label> 
+			
+			<input type="text" name="name" id="Name" class="elements" /><br>
+
+			
+			<label>Mobile :</label> 
+			<input type="tel" id="Mob" class="elements"/>
+
+			
+			<label>Password : </label> 
+			<input type="password" id="Pass" class="elements"/><br>
+			</fieldset>
+			
+			<div class="elements">
+			
+			<input type="reset" class="btn" />
+			<input type="submit" class="btn" />
+			
+				
+			</div>
+		</form>
+		<script type="text/javascript" language="javascript" charset="utf-8">
+			function validate()
+			{
+				var name=document.getElementById("Name").value
+				var Mob=document.getElementById("Mob").value
+				var pass=document.getElementById("Pass").value
+				
+				
+
+				if(name=="")
+				{
+					
+					alert("Type Name !!")
+					return(false)
+				}
+				else if(!(isNaN(name))	)
+				{
+					alert("Type Charecter !!")
+					return(false)
+					
+				}
+
+				if(Mob == "")
+				{
+					
+					alert("Enter the Phone number !!")
+					return(false)
+				}
+				else if(isNaN(Mob))
+				{
+					alert("Type Number In Number Field !!")
+					return(false)
+					
+				}
+				else if(Mob.length != 10	)
+				{
+					alert("Enter 10 digit number !!")
+					return(false)
+					
+				}
+
+				if(pass=="")
+				{
+					
+					alert("Password Field Can't be empty!!")
+					return(false)
+				}
+				else if(pass.length <8 	)
+				{
+					alert("Password must contain 8 numbers")
+					return(false)
+					
+				}
+
+
+			} 
+		</script>
+	</body>
+</html>
