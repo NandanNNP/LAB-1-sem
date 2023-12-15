@@ -17,27 +17,23 @@ struct AdjList
 	int key;
 	struct AdjList *next;
 };
-struct AdjList *Vtx;
+struct AdjList *Vtx[5];
 
-void createList()
+void createList(int v,int e)
 {
 	int i;
 
-	struct AdjList *newnode,*ptr;
-	//	Initialize	
-	for(i=0;i<V;i++)
-		Vtx[i] = NULL;
-	printf("Enter the edges : ");
+	struct AdjList *newnode,*ptr;	
 	
-	newnode = (struct AdjList *)malloc(sizeof(AdjList));
-	newnode->key= E;
+	newnode = (struct AdjList *)malloc(sizeof(struct AdjList));
+	newnode->key= e;
 	newnode->next=NULL;
 
-	if(Vtx[V]== NULL)
-		Vtx[V] = newnode;
+	if(Vtx[v]== NULL)
+		Vtx[v] = newnode;
 	else
 	{
-		ptr= Vtx[V];
+		ptr= Vtx[v];
 		while(ptr->next !=NULL)	
 			ptr = ptr->next;	
 		ptr->next = newnode;
@@ -118,7 +114,7 @@ void display_graph()
 			printf("\n");
 		}
 
-},E1,E2
+}
 
 int isVisited(int Vtx)
 {
@@ -146,12 +142,37 @@ void bfs(int S)
 
 }
 
+void bfslist(int S)
+{
+	int X;
+	struct AdjList *ptr;
+	enqueue(S);
+	while((FRONT != -1) && (REAR != -1))
+	{
+		X= dequeue();
+		if(!isVisited(X))	
+		{
+			visit[X] =1;
+			printf("%d\t",X);
+			ptr=Vtx[X];
+			while(ptr != NULL)
+			{
+				enqueue(ptr->key);
+				ptr = ptr->next;
+			}
+		}	
+	}
+	printf("\n");
+
+}
+
+
 
 int main ()
 {
 	//display_graph();
 	//bfs(0);
-	int E1,E2;
+	int E1,E2,i;
 	printf("Enter the number of vertices : \t");
 	scanf("%d",&V);
 	//getMatrix(V);
@@ -161,7 +182,10 @@ int main ()
 
 	printf("Enter the number of Edges : \t");
 	scanf("%d",&E);
-
+	printf("Enter the edges : ");
+	//	Initialize Pointer Array	
+	for(i=0;i<V;i++)
+		Vtx[i] = NULL;
 	for(i=0;i<E;i++)
 	{
 		scanf("%d", &E1);
@@ -170,10 +194,10 @@ int main ()
 		if(type==2)
 			createList(E2, E1);
 	//createMatrix();
-	
+	}
 	
 	printf("<---BFS Traversal--->\n");
-	bfs(0);
+	bfslist(0);
 	
 	
 
